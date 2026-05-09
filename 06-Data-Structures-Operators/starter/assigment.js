@@ -223,6 +223,9 @@ const books = [
   },
 ];
 
+// ------------------------------------------------
+// 1
+/*
 // 1.1
 const [firstBook, secondBook] = books;
 console.log(firstBook, secondBook);
@@ -246,3 +249,108 @@ ratingsCount: ${ratingsCount}`);
 const ratingStars = [63405, 1808];
 const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
 console.log(fiveStarRatings, oneStarRatings, threeStarRatings);
+*/
+
+// -------------------------------------------------------
+// 2
+/*
+const [firstBook, , , , , , , seventhBook] = books;
+
+// 2.1
+const { title, author, ISBN } = firstBook;
+console.log(title, author, ISBN);
+
+// 2.2
+const { keywords: tags } = firstBook;
+console.log('Tags: ', tags);
+
+// 2.3
+const { language, programmingLanguage = 'unknown' } = seventhBook;
+console.log(language, programmingLanguage);
+
+// 2.4
+let bookTitle = 'unknown';
+let bookAuthor = 'unknown';
+
+({ title: bookTitle, author: bookAuthor } = firstBook);
+console.log(bookTitle, bookAuthor, firstBook);
+
+// 2.5
+
+const {
+  thirdParty: {
+    goodreads: { rating },
+  },
+} = firstBook;
+
+console.log(rating);
+
+// 2.6
+
+const printBookInfo = function ({ author, title, year = 'year unkmown' }) {
+  console.log(`${title} by ${author}, ${year}.`);
+};
+
+printBookInfo({
+  year: 1999,
+  title: 'prison break',
+  author: 'Michecl chophiled',
+});
+
+printBookInfo({
+  title: 'breaking bad',
+  author: 'vanc kiligan',
+});
+*/
+
+// -----------------------------------------------
+// 3
+/*
+const [firstBook, secondBook] = books;
+// 3.1
+const bookAuthors = [...firstBook.author, ...secondBook.author];
+console.log(bookAuthors);
+// 3.2
+const spellword = function (word) {
+  let str = '';
+  const letters = [...word];
+
+  for (let i = 0; i < letters.length; i++) {
+    str += letters[i] + ' ';
+  }
+
+  console.log(str);
+};
+
+spellword('Amin');
+
+const spellWord2 = function (word) {
+  console.log(...word);
+};
+
+spellWord2('mmad');
+*/
+
+// ----------------------------------------
+// 4
+
+// 4-1
+const [firstBook, secondBook] = books;
+const {
+  keywords: [mainKeyword, ...rest],
+} = firstBook;
+
+// const [mainKeyword, ...rest] = keywords;
+
+console.log(mainKeyword, rest);
+
+// 4-2
+const { publisher: bookPublisher, ...restOfTheBook } = secondBook;
+console.log(bookPublisher, restOfTheBook);
+
+// 4-3
+const printBookAuthorsCount = function (title, ...authors) {
+  console.log(`The book ${title} has ${authors.length} authors.`);
+};
+
+printBookAuthorsCount('Algorithm', 'amin', 'mmad', 'arman');

@@ -59,6 +59,16 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`,
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}.`,
+    );
+  },
+
+  orderPizza: function (mainIngrediant, ...otherIngrediant) {
+    console.log();
+  },
 };
 
 // DESTRUCTRING ARRAY
@@ -98,7 +108,7 @@ console.log(c1, c2, c3);
 
 // --------------------------------------------------------------
 // DESTRUCTRING OBJECTS
-
+/*
 const { name, openingHours, categories } = restaurant;
 
 console.log(name, openingHours, categories);
@@ -131,3 +141,65 @@ console.log(sat);
 restaurant.orderDelivery({
   address: 'Takane 124-18',
 });
+*/
+
+// -----------------------------------------------------
+// Spread operator
+/*
+console.log(...[1, 2, 3, 4, 5]);
+const arr = [1, 2, 3];
+
+const newArr = [20, 21, ...arr];
+console.log('newArr: ', newArr);
+console.log('arr: ', arr);
+
+const newMenu = [...restaurant.mainMenu, 'Goconi'];
+
+// 2 main usecases of spread operator
+// - Merge two arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+const str = 'amin';
+const letters = [...str, ' ', 'mmm'];
+console.log(letters);
+
+restaurant.orderPasta('tomato', 'pinaple', 'chesee');
+
+const ingrediants = [];
+prompt("Let's create your favorite pizza ;)\nClick ok please...");
+for (let i = 0; i < 3; i++) {
+  ingrediants.push(prompt(`Ingrediant ${i + 1}`));
+}
+
+console.log(ingrediants);
+
+restaurant.orderPasta(...ingrediants);
+*/
+
+// ----------------------------------------------------
+// Rest operator: used for packed or collected  rest of elements iniside an array or object inside another array or object
+
+const friends = ['God', 'parents', 'mmad', 'arman'];
+const [bestFriends1, bestFriends2, ...niceFriends] = friends;
+console.log(bestFriends1, bestFriends2, niceFriends);
+
+// objects
+const { openingHours: businessHours } = restaurant;
+const { sat, ...weekdays } = businessHours;
+console.log(sat, weekdays);
+
+const add = function (...numbers) {
+  console.log(numbers);
+
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+
+  return sum;
+};
+
+console.log(add(2, 3, 4, 5, 6));
+console.log(add(1, 4));
+console.log(add(...[2, 3]));
