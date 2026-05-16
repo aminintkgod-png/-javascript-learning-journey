@@ -333,7 +333,7 @@ spellWord2('mmad');
 
 // ----------------------------------------
 // 4
-
+/*
 // 4-1
 const [firstBook, secondBook] = books;
 const {
@@ -354,3 +354,279 @@ const printBookAuthorsCount = function (title, ...authors) {
 };
 
 printBookAuthorsCount('Algorithm', 'amin', 'mmad', 'arman');
+*/
+
+// ----------------------------------------
+//5
+/*
+// 5-1
+
+const hasExamplesInJava = function (...books) {
+  for (let i = 0; i < books.length; i++) {
+    // console.log(books[i]);
+    console.log(books[i].programmingLanguage === 'Java' || 'No data find');
+  }
+};
+
+hasExamplesInJava(...books);
+
+// 5-2
+const hasOnlineContent = function (books) {
+  for (let i = 0; i < books.length; i++) {
+    books[i].onlineContent &&
+      console.log(
+        `book number ${i + 1}, ${books[i].title} provides online content.`,
+      );
+  }
+};
+
+hasOnlineContent(books);
+*/
+
+// ----------------------------------------------
+// 6
+/*
+// 6-1
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent ??
+    console.log(`${books[i].title} provides no data about its online content.`);
+}
+*/
+
+// ----------------------------------------------
+// 7
+/*
+// 7-1
+for (let i = 0; i < books.length; i++) {
+  books[i].edition ||= 1;
+  if (books[i].edition === 1) {
+    // console.log(i);
+  }
+}
+
+// 7-2
+for (let i = 0; i < books.length; i++) {
+  // books[i].thirdParty.goodreads.rating < 4.2 && (books[i].highlighted = false);
+  books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
+  if (!books[i].highlighted) {
+    console.log(i);
+  }
+}
+*/
+
+// ----------------------------------------------
+// 8
+/*
+// 8-1
+let pageSum = 0;
+const bookPages = [];
+for (const { pages } of books) {
+  bookPages.push(pages);
+  pageSum += pages;
+}
+
+console.log(bookPages);
+console.log(pageSum);
+
+// 8-2
+const allAuthors = [];
+
+for (const { author } of books) {
+  typeof author === 'object'
+    ? allAuthors.push(...author)
+    : allAuthors.push(author);
+}
+
+console.log(allAuthors);
+const test = [...allAuthors.entries()];
+console.log(test);
+
+// 8.3
+for (const [i, author] of allAuthors.entries()) {
+  console.log(i + 1, author);
+}
+*/
+
+// ----------------------------------------------
+// 9
+/*
+// 9-1
+const bookData = [
+  ['title', 'Computer Networking: A Top-Down Approach'],
+  ['author', ['James F. Kurose', 'Keith W. Ross']],
+  ['publisher', 'Addison Wesley'],
+];
+
+const newBook = {
+  [bookData[0][0]]: bookData[0][1],
+  [bookData[1][0]]: bookData[1][1],
+  [bookData[2][0]]: bookData[2][1],
+};
+
+// for (const [property, value] of bookData) {
+//   newBook[property] = value;
+// }
+
+console.log(newBook);
+
+// 9-2
+const pages = 880;
+const newBook2 = {
+  newBook,
+  pages,
+};
+console.log(newBook2);
+*/
+
+// ---------------------------------------------------------
+// 10
+/*
+// 10-1
+const getFirstKeyword = function (books) {
+  for (const book of books) console.log(book.keywords?.[0]);
+};
+
+// console.log(getFirstKeyword(books));
+getFirstKeyword(books);
+*/
+// ------------------------------------------------------------
+// 11
+/*
+// 11-1
+const entries = [];
+
+const [
+  {
+    thirdParty: { goodreads },
+  },
+] = books;
+
+for (const key of Object.keys(goodreads)) {
+  entries.push([key]);
+}
+
+// console.log([...Object.values(goodreads).entries()]);
+
+console.log(entries);
+
+for (const [index, value] of Object.values(goodreads).entries()) {
+  entries[index].push(value);
+}
+
+console.log(Object.entries(goodreads));
+console.log(entries);
+
+
+// ----------------------------------------------------------------
+// 12
+
+// 12-1
+const allKeywords = [];
+
+for (const { keywords } of books) {
+  typeof keywords === 'object'
+    ? allKeywords.push(...keywords)
+    : allKeywords.push(keywords);
+}
+
+console.log(allKeywords);
+
+// 12-2
+const uniqueKeywords = new Set(allKeywords);
+console.log(uniqueKeywords);
+console.log(uniqueKeywords.has('science'));
+
+// 12-3
+uniqueKeywords.add('coding').add('science');
+console.log(uniqueKeywords);
+
+// 12-4
+uniqueKeywords.delete('business');
+// console.log(uniqueKeywords.has('business'));
+
+// 12-5
+const uniqueKeywordsArr = [...uniqueKeywords];
+console.log(uniqueKeywordsArr);
+
+// 12-6
+uniqueKeywords.clear();
+console.log(uniqueKeywords);
+
+
+// -------------------------------------------------------------
+// 13
+
+// 13-1
+const bookMap = new Map([
+  ['title', 'Clean Code'],
+  ['author', 'Robert C. Martin'],
+]);
+console.log(bookMap);
+
+// bookMap.set('title', 'Clean Code').set('author', 'Robert');
+
+// 13-2
+bookMap.set('pages', 464);
+console.log(bookMap);
+
+// 13-3
+const title = bookMap.get('title');
+// const title = bookMap.get('title');
+const author = bookMap.get('author');
+console.log(`${title} by ${author}`);
+
+// 13-4
+console.log(bookMap.size);
+
+// 13-5
+// console.log(`Author of this book is ${bookMap.has('author') && 'known'}`);
+console.log(
+  `Author of this book is ${bookMap.has('author') ? 'known' : 'Unknown'}`,
+);
+
+// ------------------------------------------------------------------------
+// 14
+
+// 14-1
+const [firstBook] = books;
+console.log(Object.entries(firstBook));
+const firstBookMap = new Map(Object.entries(firstBook));
+console.log(firstBookMap);
+
+// 14-2
+for (const [key, value] of firstBookMap) {
+  // typeof value === 'number' && console.log(key);
+  if (typeof value === 'number') console.log(key);
+}
+*/
+
+// --------------------------------------------------------------------------
+// 15
+
+// 15-1
+const [{ ISBN }] = books;
+
+console.log(ISBN[6]);
+console.log(ISBN[4]);
+console.log(ISBN[9]);
+console.log(ISBN[8]);
+
+// 15-2
+const quote =
+  'A computer once beat me at chess, but it was no match for me at kick boxing';
+
+console.log(quote.indexOf('chess'));
+
+// 15-3
+console.log(quote.slice(quote.indexOf('boxing')));
+
+// 15-4
+const isContributor = function (author) {
+  // return (author.indexOf('Contributor') !== -1 && true) || false;
+  if (author.indexOf('Contributor') !== -1) return true;
+  else return false;
+};
+
+console.log(isContributor('AMIN (Contributor)'));
+console.log(isContributor('Mel'));
+console.log(isContributor('Fueki (Contributor)'));
